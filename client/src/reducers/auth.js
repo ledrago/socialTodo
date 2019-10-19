@@ -5,7 +5,8 @@ import {
   AUTH_ERROR,
   LOGIN_FAILED,
   LOGIN_SUCCESS,
-  LOGOUT
+  LOGOUT,
+  CLEAR_PROFILE
 } from "../actions/types";
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
+  console.log("action from auth : ", action);
   const { type, payload } = action;
   switch (type) {
     case USER_LOADED:
@@ -45,8 +47,14 @@ export default function(state = initialState, action) {
         isAuthenticated: false,
         loading: false
       };
-
+    case CLEAR_PROFILE:
+      return {
+        ...state,
+        profile: null,
+        repose: [],
+        loading: false
+      };
     default:
-      return false;
+      return state;
   }
 }

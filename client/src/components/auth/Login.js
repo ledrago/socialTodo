@@ -20,6 +20,8 @@ const Login = ({ login, isAuthenticated }) => {
     login(email, password);
   };
 
+  console.log("is authenticated : ", isAuthenticated);
+
   // Redirect if logged in
 
   if (isAuthenticated) {
