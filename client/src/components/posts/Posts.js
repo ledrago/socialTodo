@@ -3,12 +3,14 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getPosts } from "../../actions/post";
 import PostItem from "./PostItem";
+import PostForm from "./PostForm";
 import Spinner from "../layout/Spinner";
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
+  console.log("post : ", posts);
   return loading ? (
     <Spinner />
   ) : (
@@ -17,10 +19,12 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       <p className='lead'>
         <i className='fas fa-user' /> Welcome to the community
       </p>
+      <PostForm />
       <div className='posts'>
-        {posts.map(post => (
-          <PostItem key={post._id} post={post} />
-        ))}
+        {posts.map(post => {
+          console.log("post item : ", post);
+          return <PostItem key={post._id} post={post} />;
+        })}
       </div>
     </Fragment>
   );
