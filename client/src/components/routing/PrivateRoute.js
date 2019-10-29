@@ -8,7 +8,6 @@ const PrivateRoute = ({
   auth: { isAuthenticated, loading },
   ...rest
 }) => {
-  console.log("isAuthenticated from redirect route : ", isAuthenticated);
   return (
     <Route
       {...rest}

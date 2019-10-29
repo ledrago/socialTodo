@@ -10,8 +10,6 @@ const Dashboard = ({
   auth: { user },
   profile: { profile, loading }
 }) => {
-  // console.log("profile from dashboard :", getCurrentProfile());
-
   useEffect(() => {
     getCurrentProfile();
   }, []);
