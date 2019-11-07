@@ -7,13 +7,14 @@ import PropTypes from "prop-types";
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
-    name: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
     password2: ""
   });
 
-  const { name, email, password, password2 } = formData;
+  const { firstname, lastname, email, password, password2 } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,7 +24,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     if (password !== password2) {
       setAlert("Password do not match", "danger", 5000);
     } else {
-      register({ name, email, password });
+      register({ lastname, firstname, email, password });
     }
   };
 
@@ -43,9 +44,19 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='Name'
-            name='name'
-            value={name}
+            placeholder='Firstname'
+            name='firstname'
+            value={firstname}
+            onChange={e => onChange(e)}
+            // required
+          />
+        </div>
+        <div className='form-group'>
+          <input
+            type='text'
+            placeholder='Lastname'
+            name='lastname'
+            value={lastname}
             onChange={e => onChange(e)}
             // required
           />

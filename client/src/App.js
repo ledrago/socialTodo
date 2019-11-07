@@ -1,6 +1,9 @@
 import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
+
+// Components
+
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
@@ -10,6 +13,10 @@ import Dashboard from "../src/components/dashboard/Dashboard";
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
 import PrivateRoute from "./components/routing/PrivateRoute";
+import Users from "./components/users/Users.js";
+
+// Css
+
 import "./App.css";
 
 // Redux stuff
@@ -39,10 +46,10 @@ const App = () => {
             <Switch>
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
-              {/* <Route exact path='/dashboard' component={Dashboard} /> */}
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
               <PrivateRoute exact path='/posts/:id' component={Post} />
               <PrivateRoute exact path='/posts' component={Posts} />
+              <PrivateRoute exact path='/users' component={Users} />
             </Switch>
           </section>
         </Fragment>
