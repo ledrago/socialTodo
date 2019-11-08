@@ -2,16 +2,16 @@ import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getCurrentProfile } from "../../actions/profile";
+import { getCurrentUser } from "../../actions/users";
 import Spinner from "../layout/Spinner";
 
 const Dashboard = ({
-  getCurrentProfile,
+  getCurrentUser,
   auth: { user },
   profile: { profile, loading }
 }) => {
   useEffect(() => {
-    getCurrentProfile();
+    getCurrentUser();
   }, []);
   return loading && profile === null ? (
     <Spinner />
@@ -37,7 +37,7 @@ const Dashboard = ({
 };
 
 Dashboard.propTypes = {
-  getCurrentProfile: PropTypes.func.isRequired,
+  getCurrentUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -49,5 +49,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile }
+  { getCurrentUser }
 )(Dashboard);

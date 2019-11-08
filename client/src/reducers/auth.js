@@ -6,7 +6,8 @@ import {
   LOGIN_FAILED,
   LOGIN_SUCCESS,
   LOGOUT,
-  CLEAR_PROFILE
+  CLEAR_USER,
+  ACCOUNT_DELETED
 } from "../actions/types";
 
 const initialState = {
@@ -39,18 +40,12 @@ export default function(state = initialState, action) {
     case LOGIN_FAILED:
     case AUTH_ERROR:
     case LOGOUT:
+    case ACCOUNT_DELETED:
       localStorage.removeItem("token");
       return {
         ...state,
         token: null,
         isAuthenticated: false,
-        loading: false
-      };
-    case CLEAR_PROFILE:
-      return {
-        ...state,
-        profile: null,
-        repose: [],
         loading: false
       };
     default:
