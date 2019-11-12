@@ -5,15 +5,11 @@ import { connect } from "react-redux";
 import { getCurrentUser } from "../../actions/users";
 import Spinner from "../layout/Spinner";
 
-const Dashboard = ({
-  getCurrentUser,
-  auth: { user },
-  profile: { profile, loading }
-}) => {
+const Dashboard = ({ getCurrentUser, auth: { user, loading } }) => {
   useEffect(() => {
     getCurrentUser();
   }, []);
-  return loading && profile === null ? (
+  return loading && user === null ? (
     <Spinner />
   ) : (
     <Fragment>
@@ -22,7 +18,7 @@ const Dashboard = ({
         <i className='fas fa-user' />
         Welcome {user && `${user.firstname} ${user.lastname}`}
       </p>
-      {profile !== null ? (
+      {user !== null ? (
         <Fragment>has</Fragment>
       ) : (
         <Fragment>
@@ -39,12 +35,12 @@ const Dashboard = ({
 Dashboard.propTypes = {
   getCurrentUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  users: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile: state.profile
+  users: state.users
 });
 
 export default connect(
